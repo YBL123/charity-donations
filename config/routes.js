@@ -5,8 +5,8 @@ const donaters = require('../controllers/donaters')
 
 
 //DONATER
-// router.route('/donaters/:id')
-//   .get(donaters.show)
+router.route('/donaters/:id')
+  .get(donaters.single)
 
 router.route('/donaters')
   .get(donaters.index)
