@@ -22,16 +22,18 @@ const createdonor = asyncHandler(async (req, res, next) => {
   if (!donor.payment_method.security_number || donor.payment_method.security_number.length > 3 || donor.payment_method.security_number.length < 0) {
     return next(new ErrorResponse('Invalid Security Number', 400))
   }
+  // IF START DATE IS SENT IN A VALID FORMAT. 
   if (donor.donation_details.donation_start_date && !moment(donor.donation_details.donation_start_date, 'YYYY-MM-DD', true).isValid()) {
     return next(new ErrorResponse('Invalid Start Date', 400))
   }
-  if (donor.donation_details.donation_start_date < dateNow) {
+  // DATE MUST BE NOW OR IN THE FUTURE
+  if (moment(donor.donation_details.start_date, 'YYYY-MM-DD') < dateNow) {
     return next(new ErrorResponse('Invalid Start Date', 400))
   }
 
-  // card_date -> ['MM', 'YY']
+  // CHANGES card_date TO ['MM', 'YY'] 
   const cardDate = donor.payment_method.expiration_date.split('/')
-  if (cardDate[1] < moment('YY')) {
+  if (cardDate[1] < moment().format('YY')) {
     return next(new ErrorResponse('Invalid card exp date', 400))
   }
 
