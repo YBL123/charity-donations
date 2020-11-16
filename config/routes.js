@@ -3,7 +3,7 @@ const router = require('express').Router()
 const donors = require('../controllers/donors')
 const donations = require('../controllers/donations')
 
-//DONATER
+//DONOR
 router.route('/donors/:id')
   .get(donors.single)
 
@@ -17,6 +17,7 @@ router.route('/donations/:id')
 
 router.route('/donations')
   .get(donations.index)
+  .post(donations.create)
 
 
 module.exports = router

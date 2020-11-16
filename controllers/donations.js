@@ -24,8 +24,15 @@ const singleDonation = asyncHandler(async (req, res, next) => {
   res.status(200).json(donation)
 })
 
+const createDonation = asyncHandler(async (req, res, next) => {
+  const newDonation = await Donation.create(req.body)
+
+  res.status(200).json(newDonation)
+})
+
 
 module.exports = {
   index: donationsIndex,
-  single: singleDonation
+  single: singleDonation,
+  create: createDonation
 }
