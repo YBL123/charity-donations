@@ -1,12 +1,12 @@
 const router = require('express').Router()
 
 const donaters = require('../controllers/donaters')
-const donations = require('../controllers/donations')
+// const donations = require('../controllers/donations')
 
 
 //DONATER
-router.route('/donaters/:id')
-  .get(donaters.show)
+// router.route('/donaters/:id')
+//   .get(donaters.show)
 
 router.route('/donaters')
   .get(donaters.index)
@@ -14,12 +14,12 @@ router.route('/donaters')
 
 
 //DONATIONS
-router.route('/donations/:id')
-  .get(donations.show)
+// router.route('/donations/:id')
+//   .get(donations.show)
 
-router.route('/donatinos')
-  .get(donations.index)
-  .post(donations.create)
+// router.route('/donatinos')
+//   .get(donations.index)
+//   .post(donations.create)
 
 
 module.exports = router

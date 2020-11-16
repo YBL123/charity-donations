@@ -12,7 +12,35 @@ const donatersIndex = asyncHandler(async (req, res, next) => {
   res.status(200).json(donaters)
 })
 
+const donatersCreate = asyncHandler(async (req, res, next) => {
+
+  const newDonater = {
+    name: req.body.name,
+    email: req.body.email,
+    paymentMethod: req.body.paymentMethod,
+    nameOnCard: req.body.nameOnCard,
+    cardNumber: parseInt(req.body.cardNumber),
+    securityNumber: parseInt(req.body.securityNumber),
+    expirationDate: req.body.expirationDate,
+    donationAmount: parseInt(req.body.donationAmount),
+    donationMethod: req.body.donationMethod,
+    donationPeriod: parseInt(req.body.donationPeriod),
+    donationStartDate: req.body.donationStartDate
+  }
+
+  // INVALID IF...
+  if (req.body.securityNumber.length > 3 || req.body.securityNumber.length < 0) {
+    return next(new ErrorResponse('Invalid Security Number', 400))
+  }
+
+  const createdDonater = await Donater.create(newDonater)
+
+  res.status(201).json(createdDonater)
+  
+})
+
 
 module.exports = {
-  index: donatersIndex
+  index: donatersIndex,
+  create: donatersCreate
 }
