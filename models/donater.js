@@ -7,11 +7,11 @@ const donaterSchema = new mongoose.Schema({
   nameOnCard: { type: String, required: true },
   cardNumber: { type: Number, required: true },
   securityNumber: { type: Number, required: true },
-  expirationDate: { type: String, required: true },
+  expirationDate: { type: Date, required: true },
   donationAmount: { type: Number, required: true },
   donationMethod: { type: String, required: true, enum: ['equal', 'more-odd'] },
   donationPeriod: { type: Number, required: true, default: 10 },
-  donationStartDate: { type: String, required: true }
+  donationStartDate: { type: Date, default: Date.now  }
 }, {
   timestamps: true
 
