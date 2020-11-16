@@ -12,7 +12,7 @@ const donatersIndex = asyncHandler(async (req, res, next) => {
   res.status(200).json(donaters)
 })
 
-const donatersCreate = asyncHandler(async (req, res, next) => {
+const createDonater = asyncHandler(async (req, res, next) => {
 
   const newDonater = {
     name: req.body.name,
@@ -39,7 +39,7 @@ const donatersCreate = asyncHandler(async (req, res, next) => {
   
 })
 
-const donatersSingle = asyncHandler(async (req, res, next) => {
+const singleDonater = asyncHandler(async (req, res, next) => {
   //* this id is the object id
   //* whatever goes into /:id is referred to as the req.params.id
   const donaterId = req.params.id
@@ -54,6 +54,6 @@ const donatersSingle = asyncHandler(async (req, res, next) => {
 
 module.exports = {
   index: donatersIndex,
-  create: donatersCreate,
-  single: donatersSingle
+  create: createDonater,
+  single: singleDonater
 }
