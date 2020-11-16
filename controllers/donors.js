@@ -16,6 +16,7 @@ const donorsIndex = asyncHandler(async (req, res, next) => {
 
 const createdonor = asyncHandler(async (req, res, next) => {
 
+  // SPREAD -> COPYING DATA OF REQ.BODY AND STORING IN donor VARIABLE
   const donor = { ...req.body }
   const dateNow = moment()
 
@@ -38,22 +39,27 @@ const createdonor = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Invalid card exp date', 400))
   }
 
-  // prep donor object for creation
+  // prep DONOR OBJECT FOR CREATION
   donor.payment_method.card_number = parseInt(donor.payment_method.card_number)
   donor.payment_method.security_number = parseInt(donor.payment_method.security_number)
   donor.donation_details.amount = parseFloat(donor.donation_details.amount)
   donor.donation_details.donation_period = parseInt(donor.donation_details.donation_period)
 
+  // PREPPING PERIOD OBJECT FOR CREATION
   const period = {
     donor_id: '',
     donation_details: donor.donation_details
   }
+  // DELETING donation_details FROM DONOR OBJECT BECAUSE IT IS NOW STORED ON THE PERIOD OBJECT
   delete donor.donation_details
 
+  //CREATE NEW DONOR
   const newDonor = await Donor.create(donor)
 
+  // NOW THAT WE HAVE THE NEW donor_id WE CAN ADD IT TO NEW PERIOD OBJECT
   period.donor_id = newDonor._id
 
+  // CREATE NEW PERIOD
   const newPeriod = await Period.create(period)
 
 
