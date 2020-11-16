@@ -1,21 +1,21 @@
 const router = require('express').Router()
 
-const donaters = require('../controllers/donaters')
+const donors = require('../controllers/donors')
 const donations = require('../controllers/donations')
 
 //DONATER
-router.route('/donaters/:id')
-  .get(donaters.single)
+router.route('/donors/:id')
+  .get(donors.single)
 
-router.route('/donaters')
-  .get(donaters.index)
-  .post(donaters.create)
+router.route('/donors')
+  .get(donors.index)
+  .post(donors.create)
 
 //DONATIONS
 router.route('/donations/:id')
   .get(donations.single)
 
-router.route('/donatinos')
+router.route('/donations')
   .get(donations.index)
 
 
