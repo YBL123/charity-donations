@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const donationPeriodSchema = new mongoose.Schema({
     donor_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Donor', required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, default: true },
     donation_details: {
         amount: { type: Number, required: true },
         method: { type: String, required: true, enum: ['equal', 'more-odd'] },

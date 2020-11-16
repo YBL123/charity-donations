@@ -1,6 +1,7 @@
 const ErrorResponse = require('../middleware/errorResponse')
 const moment = require('moment')
 const Donor = require('../models/donor')
+const Period = require('../models/donationPeriod')
 const { notFound } = require('../lib/errorMessages')
 const asyncHandler = require('../middleware/async')
 
@@ -43,10 +44,20 @@ const createdonor = asyncHandler(async (req, res, next) => {
   donor.donation_details.amount = parseFloat(donor.donation_details.amount)
   donor.donation_details.donation_period = parseInt(donor.donation_details.donation_period)
 
+  const period = {
+    donor_id: '',
+    donation_details: donor.donation_details
+  }
+  delete donor.donation_details
 
   const newDonor = await Donor.create(donor)
 
-  res.status(201).json(newDonor)
+  period.donor_id = newDonor._id
+
+  const newPeriod = await Period.create(period)
+
+
+  res.status(201).json({ newDonor: newDonor, newPeriod: newPeriod })
 
 })
 
