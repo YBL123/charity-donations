@@ -2,7 +2,6 @@ const ErrorResponse = require('../middleware/errorResponse')
 const Period = require('../models/donationPeriod')
 const Donation = require('../models/donation')
 const moment = require('moment')
-const { notFound } = require('../lib/errorMessages')
 const asyncHandler = require('../middleware/async')
 
 
@@ -21,33 +20,34 @@ const createDonation = asyncHandler(async (req, res, next) => {
   const allPeriods = await query
 
 
-  // MAPPING OVER allPeriods TO GO OVER EACH ACTIVE PERIOD -> MAKE DONATION PAYMENT IF IT'S STILL VALID
-  allPeriods.map(period => {
+  for (let i = 0; i < allPeriods.length; i++) {
     // CHECKING IF DATE NOW MINUS DONATION START DATE IS GREATER THAN DONATION PERIOD
     // IF TRUE TURN DONATION TO FALSE
-    if (dateNow - period.donations_detials.start_date > period.donations_detials.period) {
-      // query = await Period.findByIdAndUpdate(period._id, { active: false })
-      console.log('change to false')
+    if (dateNow - allPeriods[i].donation_details.start_date > allPeriods[i].donation_details.period) {
+      await Period.findByIdAndUpdate(allPeriods[i]._id, { active: false })
+      console.log('donation date has expired, changing active to false')
     } else {
-      //
-      query = await Donation.find({ donation_period_id: period._id, donation_date: moment().format('YYYY-MM-DD') })
-      if (!query) {
+      query = Donation.findOne({ donation_period_id: allPeriods[i]._id })
+      const donation = await query
+      // DOES THE DONATION DATE MATCH TODAY'S DATE
+      // IF DONATION DATE DOES NOT MATCH TODAY'S DATE
+      if (moment(donation.donation_date).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD')) {
         // PREPPING donation OBJECT TO BE CREATED
-        const donation = {
-          donor_id: period.donor_id,
-          donation_amount: period.donation_details.amount,
-          donation_period_id: newPeriod._id
+        const newDonation = {
+          donor_id: allPeriods[i].donor_id,
+          donation_amount: allPeriods[i].donation_details.amount,
+          donation_period_id: allPeriods[i]._id
         }
-
-        // CREATING A NEW DONATION
-        const newDonation = await Donation.create(donation)
+        // IF NOT DONATION HAS BEEN MADE TODAY = CREATING A NEW DONATION
+        await Donation.create(newDonation)
+        console.log('donation has been made')
+      } else {
+        // DONATION HAS ALREADY BEEN MADE TODAY
+        console.log('donation has already been made today')
       }
-      console.log('create a donation')
     }
-  })
-
-  res.status(200).json(allPeriods)
-
+  }
+  res.sendStatus(200)
 
 })
 
