@@ -32,14 +32,18 @@ const createDonation = asyncHandler(async (req, res, next) => {
       query = Donation.find({ donation_period_id: allPeriods[i]._id })
       const donations = await query
 
-      for (let ii = 0; ii < donations.length; ii++) {
-        if (moment(donations.donation_date, 'YYYY-MM-DD') >= )
-      }
+      // THIS IS A FLAG THAT WILL BE USED TO DETERMINE IF A PAYMENT HAS BEEN MADE.
+      let isPaid = false
+
+      // ITERATING OVER ALL DONATIONS THAT BELONG TO A SINGLE PERIOD AND CHECKING IF A DONATION HAS BEEN MADE 'TODAY'
+      donations.map(donation => {
+        if (moment(donation.donation_date).format('YYYY-MM-DD') === moment().format('YYYY-MM-DD')) {
+          isPaid = true
+        }
+      })
     
-      // DOES THE DONATION DATE MATCH TODAY'S DATE
-      // IF donation IS NULL
-      // IF DONATION DATE DOES NOT MATCH TODAY'S DATE
-      if (donation === null ) {
+      // IF NO DONATION HAS BEEN MADE -> CREATE ONE
+      if (!isPaid) {
         // PREPPING donation OBJECT TO BE CREATED
         const toPay = await calcDonationPayment(allPeriods[i], periodDifference)
         console.log('toPay', toPay)
