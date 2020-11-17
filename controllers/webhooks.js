@@ -3,6 +3,7 @@ const Period = require('../models/donationPeriod')
 const Donation = require('../models/donation')
 const moment = require('moment')
 const asyncHandler = require('../middleware/async')
+const donations = require('./donations')
 
 
 const createDonation = asyncHandler(async (req, res, next) => {
@@ -71,16 +72,16 @@ const calcDonationPayment = async (period, periodDifference) => {
   let query
   if (period.donation_details.method === 'equal') {
     toPay = period.donation_details.amount / 10
-  } else if (period.donation_details.method === 'more-odd' && periodDifference !== 0) {
+  } else if (period.donation_details.method === 'more-odd' && periodDifference !== period.donation_details.period) {
     if (periodDifference % 2 === 0) {
       console.log('even')
       toPay = ((period.donation_details.amount * 1 / 3) / (period.donation_details.period / 2)).toFixed(2) // 2 decimal places
     } else if (periodDifference % 2 === 1) {
       console.log('odd')
-      toPay = ((period.donation_details.amount * 2 / 3) / (period.donation_details.period / 2)).toFixed(2)  // 2 decimal places
+      toPay = ((period.donation_details.amount * 2 / 3) / (period.donation_details.period / 2)).toFixed(2) // 2 decimal places
     }
     // IF ITS LAST DAY AND THERE IS AN AMOUNT REMAINING
-  } else if (period.donation_details.method === 'more-odd' && periodDifference === 0) {
+  } else if (period.donation_details.method === 'more-odd' && periodDifference === period.donation_details.period ) {
     // ALL DONATIONS IN A SINGLE GIVEN PERIOD OF TIME
     query = Donation.find({ donation_period_id: period._id })
 
@@ -94,7 +95,7 @@ const calcDonationPayment = async (period, periodDifference) => {
     // RETURNING ORIGINAL DONATION AMOUNT - WHAT HAS BEEN PAID = DIFFERENCE
     toPay = period.donation_details.amount - hasBeenPaid
   }
-  return toPay
+  return toPay.toFixed(2)
 }
 
 
