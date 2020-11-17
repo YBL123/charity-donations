@@ -1,5 +1,6 @@
 const ErrorResponse = require('../middleware/errorResponse')
 const Period = require('../models/donationPeriod')
+const Donation = require('../models/donation')
 const moment = require('moment')
 const { notFound } = require('../lib/errorMessages')
 const asyncHandler = require('../middleware/async')
@@ -16,7 +17,7 @@ const periodsIndex = asyncHandler(async (req, res, next) => {
 
 const createPeriod = asyncHandler(async (req, res, next) => {
   const dateNow = moment()
-  
+
   // PREPPING PERIOD OBJECT FOR CREATION
   const period = {
     donor_id: req.body.donor_id,
