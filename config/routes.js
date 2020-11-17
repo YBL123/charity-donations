@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const donors = require('../controllers/donors')
 const donations = require('../controllers/donations')
+const periods = require('../controllers/periods')
 
 //DONOR
 router.route('/donors/:id')
@@ -17,7 +18,14 @@ router.route('/donations/:id')
 
 router.route('/donations')
   .get(donations.index)
-  .post(donations.create)
+
+//PERIOD
+router.route('/periods/:id')
+  .get(periods.single)
+
+router.route('/periods')
+  .get(periods.index)
+  .post(periods.create)
 
 
 module.exports = router

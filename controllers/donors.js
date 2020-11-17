@@ -14,7 +14,7 @@ const donorsIndex = asyncHandler(async (req, res, next) => {
   res.status(200).json(donors)
 })
 
-const createdonor = asyncHandler(async (req, res, next) => {
+const createDonor = asyncHandler(async (req, res, next) => {
 
   // SPREAD -> COPYING DATA OF REQ.BODY AND STORING IN donor VARIABLE
   const donor = { ...req.body }
@@ -59,15 +59,16 @@ const createdonor = asyncHandler(async (req, res, next) => {
   // NOW THAT WE HAVE THE NEW donor_id WE CAN ADD IT TO NEW PERIOD OBJECT
   period.donor_id = newDonor._id
 
+  // DEPENDENCY -> ONE SERVICE DEPENDING ON THE OTHER -> CREATION OF DONOR WILL ALSO CREATE A PERIOD
   // CREATE NEW PERIOD
   const newPeriod = await Period.create(period)
 
-
+  
   res.status(201).json({ newDonor: newDonor, newPeriod: newPeriod })
 
 })
 
-const singledonor = asyncHandler(async (req, res, next) => {
+const singleDonor = asyncHandler(async (req, res, next) => {
   //* this id is the object id
   //* whatever goes into /:id is referred to as the req.params.id
   const donorId = req.params.id
@@ -82,6 +83,6 @@ const singledonor = asyncHandler(async (req, res, next) => {
 
 module.exports = {
   index: donorsIndex,
-  create: createdonor,
-  single: singledonor
+  create: createDonor,
+  single: singleDonor
 }
