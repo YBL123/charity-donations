@@ -6,6 +6,8 @@ import DonorForm from './DonorForm'
 
 const NewDonor = (props) => {
 
+  const {handleNewDonor} = props
+
   const [formData, setFormDataState ] = useState({
     name: '',
     email: '',
@@ -17,11 +19,9 @@ const NewDonor = (props) => {
     amount: '',
     method: ''
   })
-  const {handleNewDonor} = props
 
   const handleChange = event => {
     // const errors = { ...errors, [event.target.name]: ''} // shouldn't go here
-    console.log(event.target.value)
     setFormDataState({ ...formData, [event.target.name]: event.target.value }) //add errors back in later 
   }
 
@@ -45,21 +45,11 @@ const NewDonor = (props) => {
         }
       }
       const res = await newDonor(request) 
-      console.log('res in newDonor', res)
-      setCookie(res)
-      handleNewDonor(res.data)
+      handleNewDonor(res.data._id)
     } catch (error) {
-      console.log(error.response)
+      console.log(error)
     }
   }
-
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
-  
 
 
     return (
