@@ -58,8 +58,8 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
       <br/>
-      <br/>
-      <h3>Payment Section:</h3>
+      {/* <br/> */}
+      <h3 className="donor-form-payment-section-h3">Payment Section:</h3>
       <div className="field">
         <label className="label">Name On Card</label>
         <div className="control">
@@ -128,7 +128,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
 
 
       <div className="field">
-        <button type="submit" className="">{buttonText}</button>
+        <button type="submit" className="donor-form-button">{buttonText}</button>
       </div>
     </form>
   </div>

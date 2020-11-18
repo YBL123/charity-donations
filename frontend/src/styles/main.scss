@@ -6,6 +6,7 @@
 }
 .charity-logo {
   width: 200px;
+  
 }
 
 .charity-h1 {
@@ -15,6 +16,7 @@
 }
 
 
+//DonorForm
 .donor-form-wrap {
   display: flex;
   justify-content: center;
@@ -24,6 +26,26 @@
   display: flex;
   justify-content: center;
   background-color: rgb(143, 56, 143);
-  box-shadow: 5px 10px; quotes: 6px;        
+  box-shadow: 0 8px 6px -6px black;       
   padding: 10px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 300px;
+}
+
+.donor-form-button {
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 6px -6px black;   
+}
+
+.donor-form-payment-section-h3 {
+  display: flex;
+  justify-content: center;
 }
