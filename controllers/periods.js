@@ -42,7 +42,6 @@ const createPeriod = asyncHandler(async (req, res, next) => {
 
 
   // CREATE NEW PERIOD
-  console.log(period)
   const newPeriod = await Period.create(period)
 
   res.status(201).json(newPeriod)

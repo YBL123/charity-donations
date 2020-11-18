@@ -15,7 +15,7 @@ const Main = () => {
     const donor = getCookie('donor')
     const donorName = getCookie('donor_name')
     if (donor !== '') {
-      setDonorsState({donor: donor, name: donorName})
+      setDonorsState({ donor: donor, name: donorName })
     }
 
   }, [])
@@ -23,8 +23,6 @@ const Main = () => {
 
   // ONCE DONOR HAS BEEN CREATED SETDONORSTATE WITH DONORID
   const handleNewDonor = (donor) => {
-
-    console.log(donor, 'heeeereeee')
 
     setDonorsState(donor)
 
@@ -35,15 +33,20 @@ const Main = () => {
   // CLEARS ALL COOKIES WHEN LOGGING OUT DONOR
   const logOutDonor = () => {
     clearAllCookies()
-    setDonorsState('')
+    setDonorsState({})
   }
 
   // THIS CONTENT WILL APPEAR IF A DONOR HAS ALREADY MADE A DONATION/ LOGGED IN
   // PASSING donorId AS PROPS TO NewPeriod
-  console.log(donorsState)
   let subContent = (
     <div>
-      <NewPeriod donorId={donorsState.donorId}/>
+      <div>
+        <h2>Hi, {donorsState.name} </h2>
+        <br />
+        <h3>Thank you for your donation!</h3>
+      </div>
+      <h3>Would you like to make another donation?</h3>
+      <NewPeriod donorId={donorsState.donorId} />
       <button onClick={logOutDonor}>Log out</button>
     </div>
   )

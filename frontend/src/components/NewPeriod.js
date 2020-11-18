@@ -6,8 +6,6 @@ import { newPeriod } from '../lib/api'
 
 const NewPeriod = ({ donorId }) => {
 
-  console.log(donorId)
-
   const [formData, setFormDataState ] = useState({
     donorId: donorId,
     amount: '',

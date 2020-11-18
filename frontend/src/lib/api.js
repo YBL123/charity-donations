@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const baseUrl = 'http://localhost:8000/api/'
+
 const withHeaders = () => {
   const headers = new Headers()
   headers.append('Content-Type', 'application/json')
@@ -10,16 +12,16 @@ const withHeaders = () => {
 
 // CREATE DONOR
 export const newDonor = FormData => {
-  return axios.post('/api/donors', FormData, withHeaders())
+  return axios.post(`${baseUrl}/donors`, FormData, withHeaders())
 }
 
 // GET ALL PERIODS
 export const getAllPeriods = () => {
-  return axios.get('/api/periods')
+  return axios.get(`${baseUrl}/periods`)
 }
 
 //CREATE PERIOD
 export const newPeriod = FormData => {
-  return axios.post('http://localhost:8000/api/periods', FormData, withHeaders())
+  return axios.post(`${baseUrl}/periods`, FormData, withHeaders())
 }
 
