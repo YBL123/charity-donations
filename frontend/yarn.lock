@@ -3064,7 +3064,7 @@
   "resolved" "https://registry.yarnpkg.com/check-types/-/check-types-11.1.2.tgz"
   "version" "11.1.2"
 
-"chokidar@^2.1.8":
+"chokidar@^2.1.8", "chokidar@>=2.0.0 <4.0.0":
   "integrity" "sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg=="
   "resolved" "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz"
   "version" "2.1.8"
@@ -9822,6 +9822,13 @@
     "neo-async" "^2.6.1"
     "schema-utils" "^2.6.1"
     "semver" "^6.3.0"
+
+"sass@^1.29.0", "sass@^1.3.0":
+  "integrity" "sha512-ZpwAUFgnvAUCdkjwPREny+17BpUj8nh5Yr6zKPGtLNTLrmtoRYIjm7njP24COhjJldjwW1dcv52Lpf4tNZVVRA=="
+  "resolved" "https://registry.npmjs.org/sass/-/sass-1.29.0.tgz"
+  "version" "1.29.0"
+  dependencies:
+    "chokidar" ">=2.0.0 <4.0.0"
 
 "sax@~1.2.4":
   "integrity" "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="
