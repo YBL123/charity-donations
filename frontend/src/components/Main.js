@@ -6,9 +6,7 @@ import { getCookie, clearAllCookies, setCookie } from '../lib/cookies'
 
 const Main = () => {
 
-  const [donorsState, setDonorsState] = useState('')
-
-  console.log(donorsState)
+  const [donorsState, setDonorsState] = useState({})
 
   useEffect(() => {
 
@@ -22,16 +20,17 @@ const Main = () => {
 
 
   // ONCE DONOR HAS BEEN CREATED SETDONORSTATE WITH DONORID
-  const handleNewDonor = (donorId) => {
+  const handleNewDonor = (donor) => {
 
-    setDonorsState(donorId)
+    setDonorsState(donor)
 
-    setCookie('donor', donorId, 30)
+    setCookie('donor', donor, 30)
   }
 
   // CLEARS ALL COOKIES WHEN LOGGING OUT DONOR
   const logOutDonor = () => {
     clearAllCookies()
+    setDonorsState('')
   }
 
   // THIS CONTENT WILL APPEAR IF A DONOR HAS ALREADY MADE A DONATION/ LOGGED IN
@@ -46,7 +45,7 @@ const Main = () => {
   let mainConent = (
     <div className="page-wrap">
       {
-        donorsState === '' ? <NewDonor handleNewDonor={handleNewDonor} /> : subContent
+        Object.keys(donorsState).length === 0 ? <NewDonor handleNewDonor={handleNewDonor} /> : subContent
       }
 
     </div>

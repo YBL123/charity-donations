@@ -45,7 +45,7 @@ const NewDonor = (props) => {
         }
       }
       const res = await newDonor(request) 
-      handleNewDonor(res.data._id)
+      handleNewDonor({donorId: res.data._id, name: res.data.name})
     } catch (error) {
       console.log(error)
     }
