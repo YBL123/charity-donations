@@ -2,8 +2,9 @@ import React from 'react'
 
 
 const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
-  <div className="columns">
+  <div className="donor-form-wrap">
     <form onSubmit={handleSubmit} className="">
+      
       <div className="field">
         <label className="label">Name</label>
         <div className="control">

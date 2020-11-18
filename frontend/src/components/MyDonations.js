@@ -20,6 +20,9 @@ const MyDonations = () => {
   const history = useHistory()
 
 
+  console.log('donationsState', donationsState)
+
+
   useEffect(() => {
     const donor = getCookie('donor')
     const donorId = getCookie('donor_id')
@@ -48,7 +51,6 @@ const MyDonations = () => {
       })
 
       setDonationsState(donations)
-      console.log(donationsState)
 
       return donations
 
@@ -59,7 +61,7 @@ const MyDonations = () => {
   useEffect(() => {
     if (viewConfigState.isLoggedIn) {
 
-      const donorId = getCookie('donor_id')
+      const donorId = getCookie('donor')
 
 
       getDonations(donorId)

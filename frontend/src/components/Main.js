@@ -64,7 +64,6 @@ const Main = () => {
   )
   return (
     <div>
-      <h1>Charity</h1>
       {mainConent}
     </div>
 
