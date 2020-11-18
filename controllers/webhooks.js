@@ -7,7 +7,7 @@ const asyncHandler = require('../middleware/async')
 
 const createDonation = asyncHandler(async (req, res, next) => {
 
-  const dateNow = moment()
+  // const dateNow = moment()
 
   // VALIDATE ACCESS TOKEN TO WEBHOOK
   if (req.body.access_token !== process.env.CRON_ACCESS_TOKEN) {
@@ -67,12 +67,11 @@ const createDonation = asyncHandler(async (req, res, next) => {
 
 
 const calcDonationPayment = async (period, periodDifference) => {
-  console.log(`----\n${periodDifference}\n----\n${period.donation_details.period}\n`)
+  console.log(`----\n${periodDifference}\n----\n${period.donation_details.period}\n`) //
   let toPay = 0
   let query
   if (period.donation_details.method === 'equal') {
     toPay = (period.donation_details.amount / 10).toFixed(2)
-    parseFloat(toPay).toFixed(2)
   } else if (period.donation_details.method === 'more-odd' && periodDifference !== period.donation_details.period) {
     if (periodDifference % 2 === 1) {
       console.log('even')
