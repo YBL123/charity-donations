@@ -35,22 +35,25 @@ const MyDonations = () => {
 
   }, [])
 
-  const getDonations = async (donorId) => {
+  const getDonations = async () => {
     let res = await getAllDonations()
-    console.log('getDonations', res)
 
     if (res.status === 200) {
       setDonationsState(res)
       setViewConfigState({ ...viewConfigState, isLoading: false })
 
       const donations = res.data.map(donation => {
-        return <h1>donation</h1>
+        console.log('donation', donation.donation_amount)
+        return donation.donation_amount
       })
-      // return donations
-      console.log('donations',donations)
+
+      setDonationsState(donations)
+      console.log(donationsState)
+
       return donations
+
     }
-    
+
   }
 
   useEffect(() => {
@@ -59,10 +62,10 @@ const MyDonations = () => {
       const donorId = getCookie('donor_id')
 
 
-        getDonations(donorId)
+      getDonations(donorId)
 
 
-      }
+    }
 
   }, [viewConfigState.isLoggedIn, donorsState.donorId])
 
@@ -71,7 +74,7 @@ const MyDonations = () => {
   return (
     <div>
       <h1>My Donations</h1>
-      {viewConfigState.isLoading ? null : donationsState.donations}
+      {/* {viewConfigState.isLoading ? null : donationsmap} */}
       {/* {vieConfigState.isError ? errMsg : null} */}
       <Link to='/'> Make another donation? </Link>
     </div>
