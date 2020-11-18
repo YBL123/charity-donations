@@ -8,13 +8,18 @@ const withHeaders = () => {
   }
 }
 
+// CREATE DONOR
+export const newDonor = FormData => {
+  return axios.post('/api/donors', FormData, withHeaders())
+}
 
 // GET ALL PERIODS
 export const getAllPeriods = () => {
   return axios.get('/api/periods')
 }
 
-// CREATE DONOR
-export const newDonor = FormData => {
-  return axios.post('/api/donors', FormData, withHeaders())
+//CREATE PERIOD
+export const newPeriod = FormData => {
+  return axios.post('http://localhost:8000/api/periods', FormData, withHeaders())
 }
+

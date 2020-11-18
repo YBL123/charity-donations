@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const router = require('./config/routes')
 const errorHandler = require('./lib/errorHandler')
 const connectDB = require('./db/connect')
+const cors = require('cors')
 
 require('dotenv').config({ path: './config/config.env' })
 
@@ -11,6 +12,8 @@ connectDB() //* calling connection here. Comes after dotenv as I am calling proc
 const app = express()
 
 app.use(bodyParser.json())
+
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 
 app.use('/api', router)
 

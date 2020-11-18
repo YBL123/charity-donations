@@ -33,11 +33,16 @@ const createPeriod = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Invalid Start Date', 400))
   }
 
-
+  
   period.donation_details.amount = parseFloat(period.donation_details.amount)
-  period.donation_details.donation_period = parseInt(period.donation_details.donation_period)
+  if (req.body.period !== undefined) {
+    period.donation_details.period = parseInt(period.donation_details.period)
+  }
+  
+
 
   // CREATE NEW PERIOD
+  console.log(period)
   const newPeriod = await Period.create(period)
 
   res.status(201).json(newPeriod)

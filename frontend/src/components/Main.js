@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import NewDonor from './NewDonor'
+import NewPeriod from './NewPeriod'
 
 import { getCookie, clearAllCookies, setCookie } from '../lib/cookies'
 
@@ -12,8 +13,9 @@ const Main = () => {
 
     //CHECKING IF COOKIE EXITS -> if it does setDonorState
     const donor = getCookie('donor')
+    const donorName = getCookie('donor_name')
     if (donor !== '') {
-      setDonorsState(donor)
+      setDonorsState({donor: donor, name: donorName})
     }
 
   }, [])
@@ -22,9 +24,12 @@ const Main = () => {
   // ONCE DONOR HAS BEEN CREATED SETDONORSTATE WITH DONORID
   const handleNewDonor = (donor) => {
 
+    console.log(donor, 'heeeereeee')
+
     setDonorsState(donor)
 
-    setCookie('donor', donor, 30)
+    setCookie('donor', donor.donorId, 30)
+    setCookie('donor_name', donor.name, 30)
   }
 
   // CLEARS ALL COOKIES WHEN LOGGING OUT DONOR
@@ -34,9 +39,11 @@ const Main = () => {
   }
 
   // THIS CONTENT WILL APPEAR IF A DONOR HAS ALREADY MADE A DONATION/ LOGGED IN
+  // PASSING donorId AS PROPS TO NewPeriod
+  console.log(donorsState)
   let subContent = (
     <div>
-      <button>Make New Donation Period</button>
+      <NewPeriod donorId={donorsState.donorId}/>
       <button onClick={logOutDonor}>Log out</button>
     </div>
   )
