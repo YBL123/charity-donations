@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^5.10.14",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "webhooks": "^0.0.4"
   }
 }

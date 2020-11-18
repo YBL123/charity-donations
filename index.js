@@ -1,11 +1,10 @@
 const express = require('express')
-const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
 const router = require('./config/routes')
 const errorHandler = require('./lib/errorHandler')
 const connectDB = require('./db/connect')
 
-dotenv.config({ path: './config/config.env' })
+require('dotenv').config({ path: './config/config.env' })
 
 connectDB() //* calling connection here. Comes after dotenv as I am calling process.env within the connectDB function
 

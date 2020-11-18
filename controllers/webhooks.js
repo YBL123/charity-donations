@@ -3,8 +3,7 @@ const Period = require('../models/donationPeriod')
 const Donation = require('../models/donation')
 const moment = require('moment')
 const asyncHandler = require('../middleware/async')
-const donations = require('./donations')
-
+// const donations = require('./donations')
 
 const createDonation = asyncHandler(async (req, res, next) => {
 
@@ -71,9 +70,10 @@ const calcDonationPayment = async (period, periodDifference) => {
   console.log(`----\n${periodDifference}\n----\n${period.donation_details.period}\n`)
   let toPay = 0
   let query
-  if (period.donation_details.method === 'equal') {
-    toPay = (period.donation_details.amount / 10).toFixed(2)
-  } else if (period.donation_details.method === 'more-odd' && periodDifference !== period.donation_details.period) {
+  if (isInt(periodDifference) && period.donation_details.method === 'equal') {
+    toPay = (period.donation_details.amount / 10).toString()
+    parseFloat(toPay).toFixed(2)
+  } else if (isInt(periodDifference) && period.donation_details.method === 'more-odd' && periodDifference !== period.donation_details.period) {
     if (periodDifference % 2 === 1) {
       console.log('even')
       toPay = ((period.donation_details.amount * 1 / 3) / (period.donation_details.period / 2)).toFixed(2) // 2 decimal places
@@ -99,6 +99,14 @@ const calcDonationPayment = async (period, periodDifference) => {
   return toPay
 }
 
+
+const isInt = (n) => {
+  return Number(n) === n && n % 1 === 0
+}
+
+const isFloat = (n) => {
+  return Number(n) === n && n % 1 !== 0
+}
 
 module.exports = {
   createDonation
