@@ -74,7 +74,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="security number"
+            placeholder="3 digit number at the back of card"
             name="security_number"
             onChange={handleChange}
             value={formData.security_number}
@@ -91,6 +91,32 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
             name="expiration_date"
             onChange={handleChange}
             value={formData.expiration_date}
+          />
+        </div>
+        {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
+      </div>
+      <div className="field">
+        <label className="label">Amount</label>
+        <div className="control">
+          <input
+            className="input"
+            placeholder="amount"
+            name="amount"
+            onChange={handleChange}
+            value={formData.amount}
+          />
+        </div>
+        {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
+      </div>
+      <div className="field">
+        <label className="label">Method</label>
+        <div className="control">
+          <input
+            className="input"
+            placeholder="method"
+            name="method"
+            onChange={handleChange}
+            value={formData.method}
           />
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}

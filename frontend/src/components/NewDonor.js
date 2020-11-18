@@ -13,12 +13,15 @@ const NewDonor = (props) => {
     card_type: '',
     card_number: '',
     security_number: '',
-    expiration_date: ''
+    expiration_date: '',
+    amount: '',
+    method: ''
   })
   const {handleNewDonor} = props
 
   const handleChange = event => {
     // const errors = { ...errors, [event.target.name]: ''} // shouldn't go here
+    console.log(event.target.value)
     setFormDataState({ ...formData, [event.target.name]: event.target.value }) //add errors back in later 
   }
 
@@ -26,7 +29,23 @@ const NewDonor = (props) => {
     event.preventDefault()
     
     try {
-      const res = await newDonor(formData) 
+      const request = {
+        name: formData.name,
+        email: formData.email,
+        payment_method: {
+          name_on_card: formData.name_on_card,
+          card_type: formData.card_type,
+          card_number: formData.card_number,
+          security_number: formData.security_number,
+          expiration_date: formData.expiration_date
+        },
+        donation_details: {
+          amount: formData.amount,
+          method: formData.method,
+        }
+      }
+      const res = await newDonor(request) 
+      console.log('res in newDonor', res)
       handleNewDonor(res.data)
     } catch (error) {
       console.log(error.response)
@@ -42,7 +61,7 @@ const NewDonor = (props) => {
             // errors={this.state.errors}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
-            buttonText="Make Donation"
+            buttonText="Proceed"
           />
         </div>
       </section>
