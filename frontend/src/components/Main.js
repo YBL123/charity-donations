@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import NewDonor from './NewDonor'
 import NewPeriod from './NewPeriod'
@@ -46,6 +47,7 @@ const Main = () => {
         <h3>Thank you for your donation!</h3>
       </div>
       <h3>Would you like to make another donation?</h3>
+      <Link to='/mydonations'> Check your donations </Link>
       <NewPeriod donorId={donorsState.donorId} />
       <button onClick={logOutDonor}>Log out</button>
     </div>

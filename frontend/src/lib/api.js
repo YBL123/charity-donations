@@ -20,8 +20,12 @@ export const getAllPeriods = () => {
   return axios.get(`${baseUrl}/periods`)
 }
 
-//CREATE PERIOD
+// CREATE PERIOD
 export const newPeriod = FormData => {
   return axios.post(`${baseUrl}/periods`, FormData, withHeaders())
 }
 
+// GET ALL DONATIONS
+export const getAllDonations = () => {
+  return axios.get(`${baseUrl}/donations`)
+}
