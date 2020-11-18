@@ -68,15 +68,16 @@ const createDonation = asyncHandler(async (req, res, next) => {
 
 
 const calcDonationPayment = async (period, periodDifference) => {
+  console.log(`----\n${periodDifference}\n----\n${period.donation_details.period}\n`)
   let toPay = 0
   let query
   if (period.donation_details.method === 'equal') {
-    toPay = period.donation_details.amount / 10
+    toPay = (period.donation_details.amount / 10).toFixed(2)
   } else if (period.donation_details.method === 'more-odd' && periodDifference !== period.donation_details.period) {
-    if (periodDifference % 2 === 0) {
+    if (periodDifference % 2 === 1) {
       console.log('even')
       toPay = ((period.donation_details.amount * 1 / 3) / (period.donation_details.period / 2)).toFixed(2) // 2 decimal places
-    } else if (periodDifference % 2 === 1) {
+    } else if (periodDifference % 2 === 0) {
       console.log('odd')
       toPay = ((period.donation_details.amount * 2 / 3) / (period.donation_details.period / 2)).toFixed(2) // 2 decimal places
     }
@@ -95,7 +96,7 @@ const calcDonationPayment = async (period, periodDifference) => {
     // RETURNING ORIGINAL DONATION AMOUNT - WHAT HAS BEEN PAID = DIFFERENCE
     toPay = period.donation_details.amount - hasBeenPaid
   }
-  return toPay.toFixed(2)
+  return toPay
 }
 
 
