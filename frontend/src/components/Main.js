@@ -56,10 +56,19 @@ const Main = () => {
 
   let mainConent = (
     <div className="page-wrap">
+      <div className="payment-methods-explanation-wrap">
+        <h2>Payment Methods:</h2>
+        <h4>
+          Equal — the same amount to be donated every day.
+          <br/>
+          More-odd — double the amount to be donated on odd-numbered days.
+          <br/>
+          If there is any money left over at the end of the ten days, you can assume this will be donated on the last day.
+        </h4>
+      </div>
       {
         Object.keys(donorsState).length === 0 ? <NewDonor handleNewDonor={handleNewDonor} /> : subContent
       }
-
     </div>
   )
   return (

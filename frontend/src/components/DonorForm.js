@@ -10,7 +10,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="name"
+            placeholder="John Smith"
             name="name"
             onChange={handleChange}
             value={formData.name}
@@ -23,7 +23,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="email"
+            placeholder="johnsmith@gmail.com"
             name="email"
             onChange={handleChange}
             value={formData.email}
@@ -36,7 +36,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="amount"
+            placeholder="i.e £50"
             name="amount"
             onChange={handleChange}
             value={formData.amount}
@@ -49,7 +49,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="method"
+            placeholder="equal or more-odd"
             name="method"
             onChange={handleChange}
             value={formData.method}
@@ -78,7 +78,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="card type"
+            placeholder="visa debit/visa credit/master card/american express"
             name="card_type"
             onChange={handleChange}
             value={formData.card_type}
@@ -91,7 +91,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="card number"
+            placeholder="long number on the front of your card"
             name="card_number"
             onChange={handleChange}
             value={formData.card_number}
@@ -104,7 +104,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="3 digit number at the back of card"
+            placeholder="3 digit number at the back of your card"
             name="security_number"
             onChange={handleChange}
             value={formData.security_number}
@@ -117,7 +117,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="expiration date"
+            placeholder="your card's expiration date"
             name="expiration_date"
             onChange={handleChange}
             value={formData.expiration_date}
