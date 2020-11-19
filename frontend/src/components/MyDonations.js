@@ -4,8 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { getCookie } from '../lib/cookies'
 
-import { getAllDonations } from '../lib/api'
-
+import { getDonorDonations } from '../lib/api'
 
 
 const MyDonations = () => {
@@ -25,12 +24,11 @@ const MyDonations = () => {
 
   useEffect(() => {
     const donor = getCookie('donor')
-    const donorId = getCookie('donor_id')
+    const donorName = getCookie('donor_name')
     if (donor !== '') {
-      setDonorsState({ donor: donor, name: donorId })
-    }
-    //if no cookie -> history.push('/)
-    if (!donor) {
+      setDonorsState({ donor: donor, name: donorName })
+    } else {
+      //if no cookie -> history.push('/)
       history.push('/')
     }
 
@@ -38,45 +36,43 @@ const MyDonations = () => {
 
   }, [])
 
-  const getDonations = async () => {
-    let res = await getAllDonations()
-
-    if (res.status === 200) {
-      setDonationsState(res)
-      setViewConfigState({ ...viewConfigState, isLoading: false })
-
-      const donations = res.data.map(donation => {
-        console.log('donation', donation.donation_amount)
-        return donation.donation_amount
-      })
-
-      setDonationsState(donations)
-
-      return donations
-
-    }
-
-  }
-
+  // IS LOGGED IN?
   useEffect(() => {
-    if (viewConfigState.isLoggedIn) {
 
-      const donorId = getCookie('donor')
+    const getDonations = async () => {
+      let res = await getDonorDonations(donorsState.donor)
 
-
-      getDonations(donorId)
-
-
+      if (res.status === 200) {
+        setDonationsState(res.data)
+        setViewConfigState({ ...viewConfigState, isLoading: false })
+      }
     }
 
-  }, [viewConfigState.isLoggedIn, donorsState.donorId])
+    if (viewConfigState.isLoggedIn) {
+      //CALLING getDonations WITH donor 
+      getDonations(donorsState.donor)
+    }
+
+  }, [viewConfigState.isLoggedIn])
 
 
+  let printDonations = (
+    <div>
+      {donationsState.map((donation, index) => {
+        return (
+          // <Donation key={index} donation={donation} />
+          <div key={index}>
+            donation
+          </div>
+        )
+      })}
+    </div>
+  )
 
   return (
     <div>
       <h1>My Donations</h1>
-      {/* {viewConfigState.isLoading ? null : donationsmap} */}
+      {viewConfigState.isLoading ? null : printDonations}
       {/* {vieConfigState.isError ? errMsg : null} */}
       <Link to='/'> Make another donation? </Link>
     </div>

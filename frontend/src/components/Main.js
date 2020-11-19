@@ -21,7 +21,6 @@ const Main = () => {
 
   }, [])
 
-
   // ONCE DONOR HAS BEEN CREATED SETDONORSTATE WITH DONORID
   const handleNewDonor = (donor) => {
 
@@ -46,8 +45,8 @@ const Main = () => {
         <h3>Thank you for your donation!</h3>
       <h3>Would you like to make another donation?</h3>
       <Link to='/mydonations'> Check your donations </Link>
-      <NewPeriod donorId={donorsState.donorId} />
-      <Link className="logout-link" onClick={logOutDonor}>Log out</Link>
+      <NewPeriod donorId={donorsState.donor} />
+      <p className="logout-link" onClick={logOutDonor}>Log out</p> 
       </div>
     </div>
   )

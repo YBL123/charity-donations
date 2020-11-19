@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { newDonor } from '../lib/api'
+import { newDonor, webhookTrigger } from '../lib/api'
 
 import DonorForm from './DonorForm'
 
@@ -45,7 +45,10 @@ const NewDonor = (props) => {
         }
       }
       const res = await newDonor(request) 
-      handleNewDonor({donorId: res.data.newDonor._id, name: res.data.newDonor.name})
+      if (res.status === 201) {
+        await webhookTrigger()
+        handleNewDonor({donorId: res.data.newDonor._id, name: res.data.newDonor.name})
+      }
     } catch (error) {
       console.log(error)
     }

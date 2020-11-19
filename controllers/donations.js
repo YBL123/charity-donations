@@ -1,5 +1,6 @@
 const ErrorResponse = require('../middleware/errorResponse')
 const Donation = require('../models/donation')
+const Donor = require('../models/donor')
 const { notFound } = require('../lib/errorMessages')
 const asyncHandler = require('../middleware/async')
 
@@ -25,8 +26,42 @@ const singleDonation = asyncHandler(async (req, res, next) => {
 })
 
 
+//GET ALL DONATIONS FOR SINGLE DONOR
+const getDonorDonations = asyncHandler(async (req, res, next) => {
+
+  const donorId = req.params.id
+
+  if (!donorId) {
+    return next(new ErrorResponse(notFound, 404))
+  }
+  const donor = await Donor.findById(donorId)
+  if (!donor) {
+    return next(new ErrorResponse(notFound, 404))
+  }
+
+  const donations = await Donation.find({ donor_id: donorId })
+  if (donations.length === 0) {
+    return next(new ErrorResponse('no donations have been made', 404))
+  }
+
+  const organisedDonations = organiseDonationsByPeriod(donations)
+
+  
+  res.status(200).json(organisedDonations)
+})
+
+
+const organiseDonationsByPeriod = (donations) => {
+  let periodArray = []
+
+  donations.map((donation, index) => {
+    if (donation.donation_period_id === )
+  })
+}
+
 
 module.exports = {
   index: donationsIndex,
-  single: singleDonation
+  single: singleDonation,
+  donorDonations: getDonorDonations
 }

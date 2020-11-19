@@ -20,6 +20,10 @@ router.route('/donations/:id')
 router.route('/donations')
   .get(donations.index)
 
+// DONOR DONATIONS
+router.route('/donorDonations/:id')
+  .get(donations.donorDonations)
+
 // PERIOD
 router.route('/periods/:id')
   .get(periods.single)
@@ -31,5 +35,7 @@ router.route('/periods')
 // DONATION CREATION CRON JOB WEBHOOK
 router.route('/donationcreation')
   .post(webhooks.createDonation)
+
+
 
 module.exports = router

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import PeriodForm from '../components/PeriodForm'
 
-import { newPeriod } from '../lib/api'
+import { newPeriod, webhookTrigger } from '../lib/api'
 
 const NewPeriod = ({ donorId }) => {
 
@@ -11,6 +11,8 @@ const NewPeriod = ({ donorId }) => {
     amount: '',
     method: ''
   })
+
+  console.log(formData)
 
   const handleChange = event => {
     setFormDataState({ ...formData, [event.target.name]: event.target.value }) 
@@ -26,10 +28,14 @@ const NewPeriod = ({ donorId }) => {
           method: formData.method
         }
       }
+      console.log(request)
       const res = await newPeriod(request)
 
       if (res.status === 201) {
         console.log('new period created')
+        await webhookTrigger()
+        //RESETS FORM INPUT ONCE ANOTHER DONATION HAS BEEN MADE
+        setFormDataState({...formData, amount: '', method: ''} )
       }
     } catch (err) {
       console.log(err)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8000/api/'
+const baseUrl = 'http://localhost:8000/api'
 
 const withHeaders = () => {
   const headers = new Headers()
@@ -28,4 +28,16 @@ export const newPeriod = FormData => {
 // GET ALL DONATIONS
 export const getAllDonations = () => {
   return axios.get(`${baseUrl}/donations`)
+}
+
+// GET ALL DONOR DONATIONS
+export const getDonorDonations = (donorId) => {
+  return axios.get(`${baseUrl}/donorDonations/${donorId}`)
+}
+
+// WEBHOOK HACKER
+// HITS THE WEBHOOK TO TRIGGER EVERY TIME A NEW PERIOD OR DONOR IS CREATED
+export const webhookTrigger = () => {
+  const webhookpassword = 'charityDonation'
+  return axios.post(`${baseUrl}/donationCreation`, {access_token: webhookpassword})
 }
