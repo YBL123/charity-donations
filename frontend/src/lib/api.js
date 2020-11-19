@@ -20,6 +20,11 @@ export const getAllPeriods = () => {
   return axios.get(`${baseUrl}/periods`)
 }
 
+// GET SINGLE PERIOD
+export const getSinglePeriod = (periodId) => {
+  return axios.get(`${baseUrl}/periods/${periodId}`)
+}
+
 // CREATE PERIOD
 export const newPeriod = FormData => {
   return axios.post(`${baseUrl}/periods`, FormData, withHeaders())

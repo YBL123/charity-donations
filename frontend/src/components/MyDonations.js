@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import { Link, useHistory } from 'react-router-dom'
-
 import { getCookie } from '../lib/cookies'
-
 import { getDonorDonations } from '../lib/api'
+import Period from './Period'
 
 
 const MyDonations = () => {
@@ -18,8 +17,6 @@ const MyDonations = () => {
   })
   const history = useHistory()
 
-
-  console.log('donationsState', donationsState)
 
 
   useEffect(() => {
@@ -55,17 +52,33 @@ const MyDonations = () => {
 
   }, [viewConfigState.isLoggedIn])
 
-
   let printDonations = (
     <div>
-      {donationsState.map((donation, index) => {
-        return (
-          // <Donation key={index} donation={donation} />
-          <div key={index}>
-            donation
-          </div>
-        )
-      })}
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Split</th>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
+            <th>Day 6</th>
+            <th>Day 7</th>
+            <th>Day 8</th>
+            <th>Day 9</th>
+            <th>Day 10</th>
+          </tr>
+        </thead>
+        <tbody>
+          {donationsState.map((donations, index) => {
+            return (
+              <Period key={index} donations={donations} />
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 

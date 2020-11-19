@@ -44,19 +44,25 @@ const getDonorDonations = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('no donations have been made', 404))
   }
 
-  const organisedDonations = organiseDonationsByPeriod(donations)
+  const organisedDonations = await organiseDonationsByPeriod(donations)
 
+  console.log(organisedDonations)
   
   res.status(200).json(organisedDonations)
 })
 
 
 const organiseDonationsByPeriod = (donations) => {
-  let periodArray = []
+  let periodsArray = []
+  let donationsCopy = [...donations]
 
-  donations.map((donation, index) => {
-    if (donation.donation_period_id === )
-  })
+  while (donationsCopy.length !== 0) {
+    // FILTERING ARRAY AND RETURNING THE FIRST PERIOD
+    const result = donationsCopy.filter(don => don.donation_period_id === donationsCopy[0].donation_period_id)
+    periodsArray.push(result)
+    donationsCopy = donationsCopy.filter(don => don.donation_period_id !== donationsCopy[0].donation_period_id)
+  }
+  return periodsArray
 }
 
 

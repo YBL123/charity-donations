@@ -16,7 +16,7 @@ const donations = [
     donation: 100
   },
   {
-    peiodId: 1,
+    periodId: 1,
     donation: 500
   }
 ]
@@ -25,16 +25,15 @@ const organisedPeriods = [[1], [2], [3]]
 
 const organiseDonationsByPeriod = (donations) => {
   let periodArray = []
+  let donationsCopy = [...donations]
 
-  // periodArray['hello'] = { periodId: 1, donation: 20 }
-
-  // return periodArray
-
-  donations.map((donation, index) => {
-    if (periodArray ) {
-
-    }
-  })
+  while (donationsCopy.length !== 0) {
+    // FILTERING ARRAY AND RETURNING THE FIRST PERIOD
+    const result = donationsCopy.filter(don => don.periodId === donationsCopy[0].periodId)
+    periodArray.push(result)
+    donationsCopy = donationsCopy.filter(don => don.periodId !== donationsCopy[0].periodId)
+  }
+  return periodArray
 }
 
 console.log(organiseDonationsByPeriod(donations))
