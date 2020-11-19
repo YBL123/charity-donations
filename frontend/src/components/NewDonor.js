@@ -45,6 +45,7 @@ const NewDonor = (props) => {
         }
       }
       const res = await newDonor(request) 
+      console.log('this is res in newDonor', res)
       if (res.status === 201) {
         await webhookTrigger()
         handleNewDonor({donorId: res.data.newDonor._id, name: res.data.newDonor.name})

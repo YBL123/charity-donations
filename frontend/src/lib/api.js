@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// const baseUrl = 'http://localhost:8000/api'
 const baseUrl = 'http://localhost:8000/api'
 
 const withHeaders = () => {
@@ -17,32 +18,32 @@ export const newDonor = FormData => {
 
 // GET ALL PERIODS
 export const getAllPeriods = () => {
-  return axios.get(`${baseUrl}/periods`)
+  return axios.get(`http://localhost:8000/api/periods`)
 }
 
 // GET SINGLE PERIOD
 export const getSinglePeriod = (periodId) => {
-  return axios.get(`${baseUrl}/periods/${periodId}`)
+  return axios.get(`http://localhost:8000/api/periods/${periodId}`)
 }
 
 // CREATE PERIOD
 export const newPeriod = FormData => {
-  return axios.post(`${baseUrl}/periods`, FormData, withHeaders())
+  return axios.post(`http://localhost:8000/api/periods`, FormData)
 }
 
 // GET ALL DONATIONS
 export const getAllDonations = () => {
-  return axios.get(`${baseUrl}/donations`)
+  return axios.get(`http://localhost:8000/api/donations`)
 }
 
 // GET ALL DONOR DONATIONS
 export const getDonorDonations = (donorId) => {
-  return axios.get(`${baseUrl}/donorDonations/${donorId}`)
+  return axios.get(`http://localhost:8000/api/donorDonations/${donorId}`)
 }
 
 // WEBHOOK HACKER
 // HITS THE WEBHOOK TO TRIGGER EVERY TIME A NEW PERIOD OR DONOR IS CREATED
 export const webhookTrigger = () => {
   const webhookpassword = 'charityDonation'
-  return axios.post(`${baseUrl}/donationCreation`, {access_token: webhookpassword})
+  return axios.post(`http://localhost:8000/api/donationCreation`, {access_token: webhookpassword})
 }
