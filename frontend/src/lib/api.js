@@ -28,7 +28,7 @@ export const getSinglePeriod = (periodId) => {
 
 // CREATE PERIOD
 export const newPeriod = FormData => {
-  return axios.post(`http://localhost:8000/api/periods`, FormData)
+  return axios.post(`http://localhost:8000/api/periods`, FormData, withHeaders())
 }
 
 // GET ALL DONATIONS

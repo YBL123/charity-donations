@@ -30,6 +30,7 @@ const Main = () => {
     setCookie('donor_name', donor.name, 30)
   }
 
+
   // CLEARS ALL COOKIES WHEN LOGGING OUT DONOR
   const logOutDonor = () => {
     clearAllCookies()
@@ -51,6 +52,7 @@ const Main = () => {
     </div>
   )
 
+  console.log('donorId in Main', donorsState.donor)
 
   let mainConent = (
     <div className="page-wrap">

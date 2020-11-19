@@ -7,12 +7,12 @@ import { newPeriod, webhookTrigger } from '../lib/api'
 const NewPeriod = ({ donorId }) => {
 
   const [formData, setFormDataState ] = useState({
-    donorId: donorId,
+    donor_id: donorId,
     amount: '',
     method: ''
   })
 
-  console.log(formData)
+  console.log(formData) ////////
 
   const handleChange = event => {
     setFormDataState({ ...formData, [event.target.name]: event.target.value }) 
@@ -22,14 +22,16 @@ const NewPeriod = ({ donorId }) => {
     event.preventDefault()
     try {
       const request = {
-        donor_id: formData.donorId,
+        donor_id: donorId,
         donation_details: {
           amount: formData.amount,
           method: formData.method
         }
       }
-      console.log(request)
+      console.log('request',request) ////////////
       const res = await newPeriod(request)
+
+      console.log('this is res in newPeriod', res) ////////////
 
       if (res.status === 201) {
         console.log('new period created')

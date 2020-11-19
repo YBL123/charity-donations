@@ -6,9 +6,9 @@ import DonorForm from './DonorForm'
 
 const NewDonor = (props) => {
 
-  const {handleNewDonor} = props
+  const { handleNewDonor } = props
 
-  const [formData, setFormDataState ] = useState({
+  const [formData, setFormDataState] = useState({
     name: '',
     email: '',
     name_on_card: '',
@@ -27,7 +27,7 @@ const NewDonor = (props) => {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    
+
     try {
       const request = {
         name: formData.name,
@@ -44,11 +44,10 @@ const NewDonor = (props) => {
           method: formData.method,
         }
       }
-      const res = await newDonor(request) 
-      console.log('this is res in newDonor', res)
+      const res = await newDonor(request)
       if (res.status === 201) {
         await webhookTrigger()
-        handleNewDonor({donorId: res.data.newDonor._id, name: res.data.newDonor.name})
+        handleNewDonor({ donorId: res.data.newDonor._id, name: res.data.newDonor.name })
       }
     } catch (error) {
       console.log(error)
@@ -56,19 +55,19 @@ const NewDonor = (props) => {
   }
 
 
-    return (
-      <section className="section">
-        <div className="container">
-          <DonorForm
-            formData={formData}
-            // errors={this.state.errors}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            buttonText="Proceed"
-          />
-        </div>
-      </section>
-    )
+  return (
+    <section className="section">
+      <div className="container">
+        <DonorForm
+          formData={formData}
+          // errors={this.state.errors}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          buttonText="Proceed"
+        />
+      </div>
+    </section>
+  )
 
 }
 
