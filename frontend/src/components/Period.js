@@ -37,15 +37,15 @@ const Period = ({ donations }) => {
 
   return (
     <tr>
-    <td>
+    <td className="amount-in-table">
       {periodState.donation_details.amount}
     </td>
-    <td>
+    <td className="method">
       {periodState.donation_details.method}
     </td>
     {donations.map((donation, index) => {
       return (
-        <td key={`${index}${donation._id}`}>{donation.donation_amount}</td>
+        <td key={`${index}${donation._id}`} className="donation-amount-per-day">{donation.donation_amount}</td>
       )
     })}
   </tr>

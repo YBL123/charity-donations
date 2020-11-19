@@ -57,18 +57,18 @@ const MyDonations = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>Amount</th>
-            <th>Split</th>
-            <th>Day 1</th>
-            <th>Day 2</th>
-            <th>Day 3</th>
-            <th>Day 4</th>
-            <th>Day 5</th>
-            <th>Day 6</th>
-            <th>Day 7</th>
-            <th>Day 8</th>
-            <th>Day 9</th>
-            <th>Day 10</th>
+            <th className="amount">Amount</th>
+            <th className="split">Split</th>
+            <th className="day">Day 1</th>
+            <th className="day">Day 2</th>
+            <th className="day">Day 3</th>
+            <th className="day">Day 4</th>
+            <th className="day">Day 5</th>
+            <th className="day">Day 6</th>
+            <th className="day">Day 7</th>
+            <th className="day">Day 8</th>
+            <th className="day">Day 9</th>
+            <th className="day">Day 10</th>
           </tr>
         </thead>
         <tbody>
@@ -84,10 +84,10 @@ const MyDonations = () => {
 
   return (
     <div>
-      <h1>My Donations</h1>
+      <h1 className="my-donations-table-header">My Donations</h1>
       {viewConfigState.isLoading ? null : printDonations}
       {/* {vieConfigState.isError ? errMsg : null} */}
-      <Link to='/'> Make another donation? </Link>
+      <Link to='/' className="make-another-donation-table-link"> Make another donation? </Link>
     </div>
   )
 }

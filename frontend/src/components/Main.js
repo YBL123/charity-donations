@@ -44,7 +44,7 @@ const Main = () => {
         <h2>Hi, {donorsState.name} </h2>
         <h3>Thank you for your donation!</h3>
       <h3>Would you like to make another donation?</h3>
-      <Link to='/mydonations'> Check your donations </Link>
+      <Link to='/mydonations' className="check-your-donations-link"> Check your donations </Link>
       <NewPeriod donorId={donorsState.donor} />
       <p className="logout-link" onClick={logOutDonor}>Log out</p> 
       </div>

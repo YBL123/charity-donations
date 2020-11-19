@@ -64,6 +64,11 @@
   align-items: center;
 }
 
+.check-your-donations-link {
+  margin-bottom: 15px;
+}
+
+
 //periodForm
 .period-form-page-wrap {
   display: flex;
@@ -84,7 +89,13 @@
 }
 
 .logout-link {
-
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+.logout-link:hover {
+  text-decoration:none;
+  text-shadow: 1px 1px 1px #555;
 }
 
 
@@ -94,3 +105,47 @@
   border: 2px solid black;
 }
 
+.my-donations-table-header {
+  display: flex;
+  justify-content: center;
+}
+
+.make-another-donation-table-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+th {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+td {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.amount {
+  background-color: rgb(143, 56, 143);
+}
+
+.split {
+  background-color: rgb(240, 204, 240);
+}
+
+.method {
+  background-color: rgb(76, 107, 211);
+}
+
+.amount-in-table {
+  background-color: rgb(162, 180, 240);
+}
+
+.donation-amount-per-day {
+  background-color: rgb(203 239 210);
+}
+
+.day {
+  background-color: lightpink;
+}
