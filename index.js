@@ -13,7 +13,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+app.use(cors({ credentials: true, origin: 'https://animal-sanctuary-charity.herokuapp.com/' }))
 
 app.use('/api', router)
 
