@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Link, useHistory } from 'react-router-dom'
-import { getCookie } from '../lib/cookies'
+import { getCookie, clearAllCookies } from '../lib/cookies'
 import { getDonorDonations } from '../lib/api'
 import Period from './Period'
 
@@ -18,6 +18,11 @@ const MyDonations = () => {
   const history = useHistory()
 
 
+    // CLEARS ALL COOKIES WHEN LOGGING OUT DONOR
+    const logOutDonor = () => {
+      clearAllCookies()
+      setDonorsState({})
+    }
 
   useEffect(() => {
     const donor = getCookie('donor')
@@ -88,6 +93,7 @@ const MyDonations = () => {
       {viewConfigState.isLoading ? null : printDonations}
       {/* {vieConfigState.isError ? errMsg : null} */}
       <Link to='/' className="make-another-donation-table-link"> Make another donation? </Link>
+      <p className="logout-link" onClick={logOutDonor}>Log out</p> 
     </div>
   )
 }

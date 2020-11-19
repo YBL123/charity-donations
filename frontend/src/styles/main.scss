@@ -89,6 +89,8 @@
 }
 
 .logout-link {
+    display: flex;
+    justify-content: center;
     cursor:pointer;
     color:blue;
     text-decoration:underline;
