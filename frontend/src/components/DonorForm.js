@@ -32,11 +32,11 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         {/* {errors.type && <small className="help is-danger">{errors.type}</small>} */}
       </div>
       <div className="field">
-        <label className="label">Donation Amount</label>
+        <label className="label">Donation Amount in £</label>
         <div className="control">
           <input
             className="input"
-            placeholder="i.e £50"
+            placeholder="i.e 50"
             name="amount"
             onChange={handleChange}
             value={formData.amount}
@@ -104,7 +104,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         <div className="control">
           <input
             className="input"
-            placeholder="3 digit number at the back of your card"
+            placeholder="3 digit number on the back of your card"
             name="security_number"
             onChange={handleChange}
             value={formData.security_number}

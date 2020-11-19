@@ -2,11 +2,9 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 .charity-logo {
-  width: 200px;
-  
+  width: 150px;
 }
 
 .charity-h1 {
@@ -47,8 +45,11 @@
   display: flex;
   margin: auto;
   margin-top: 10px;
-  padding: 10px;
+  padding: 15px;
+  background-color: black;
+  color: white;
   box-shadow: 0 8px 6px -6px black;   
+  border-radius: 30px;   
 }
 
 .donor-form-payment-section-h3 {
