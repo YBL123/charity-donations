@@ -59,6 +59,8 @@ const Main = () => {
       <div className="payment-methods-explanation-wrap">
         <h2>Payment Methods:</h2>
         <h4>
+          For a 10 day period.
+          <br/>
           Equal — the same amount to be donated every day.
           <br/>
           More-odd — double the amount to be donated on odd-numbered days.
