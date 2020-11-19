@@ -2,7 +2,7 @@ import React from 'react'
 
 const PeriodForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
 
-  <div className="columns">
+  <div className="period-form-page-wrap">
     <form onSubmit={handleSubmit} className="">
       <div className="field">
         <label className="label">Amount</label>
@@ -30,7 +30,7 @@ const PeriodForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         </div>
         {/* {errors.name && <small className="help is-danger">{errors.name}</small>} */}
       </div>
-      <button type="submit" className="">{buttonText}</button>
+      <button type="submit" className="period-form-button">{buttonText}</button>
     </form>
   </div>
 

@@ -40,16 +40,15 @@ const Main = () => {
   // THIS CONTENT WILL APPEAR IF A DONOR HAS ALREADY MADE A DONATION/ LOGGED IN
   // PASSING donorId AS PROPS TO NewPeriod
   let subContent = (
-    <div>
-      <div>
+    <div className="subcontent-message-wrap">
+      <div className="subcontent-wrap">
         <h2>Hi, {donorsState.name} </h2>
-        <br />
         <h3>Thank you for your donation!</h3>
-      </div>
       <h3>Would you like to make another donation?</h3>
       <Link to='/mydonations'> Check your donations </Link>
       <NewPeriod donorId={donorsState.donorId} />
-      <button onClick={logOutDonor}>Log out</button>
+      <Link className="logout-link" onClick={logOutDonor}>Log out</Link>
+      </div>
     </div>
   )
 
@@ -60,11 +59,11 @@ const Main = () => {
         <h2>Payment Methods:</h2>
         <h4>
           For a 10 day period.
-          <br/>
+          <br />
           Equal — the same amount to be donated every day.
-          <br/>
+          <br />
           More-odd — double the amount to be donated on odd-numbered days.
-          <br/>
+          <br />
           If there is any money left over at the end of the ten days, you can assume this will be donated on the last day.
         </h4>
       </div>
@@ -75,7 +74,9 @@ const Main = () => {
   )
   return (
     <div>
-      {mainConent}
+      {
+        Object.keys(donorsState).length === 0 ? mainConent : subContent
+      }
     </div>
 
   )

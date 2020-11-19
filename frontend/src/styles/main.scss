@@ -56,3 +56,33 @@
   display: flex;
   justify-content: center;
 }
+
+//subContent
+.subcontent-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+//periodForm
+.period-form-page-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.period-form-button {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: black;
+  color: white;
+  box-shadow: 0 8px 6px -6px black;   
+  border-radius: 30px;
+  padding: 15px;   
+}
+
+.logout-link {
+
+}
