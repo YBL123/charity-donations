@@ -93,6 +93,7 @@ const MyDonations = () => {
       {viewConfigState.isLoading ? null : printDonations}
       {/* {vieConfigState.isError ? errMsg : null} */}
       <Link to='/' className="make-another-donation-table-link"> Make another donation? </Link>
+      {/* <Link to='/' className="make-another-donation-table-link"> Log Out </Link> */}
       <p className="logout-link" onClick={logOutDonor}>Log out</p> 
     </div>
   )
