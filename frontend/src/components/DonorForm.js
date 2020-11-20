@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText }) => (
+const DonorForm = ({ formData, errors, prefillPayment, handleChange, handleSubmit, buttonText }) => (
 
   <div className="donor-form-wrap">
     <form onSubmit={handleSubmit} className="">
@@ -59,8 +59,10 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
       <br />
-      {/* <br/> */}
       <h3 className="donor-form-payment-section-h3">Payment Section:</h3>
+      <div className="prefill-button-wrap">
+        <div className="prefill-button" onClick={prefillPayment}>Prefill Payment Details</div>
+        </div>
       <div className="field">
         <label className="label">Name On Card</label>
         <div className="control">

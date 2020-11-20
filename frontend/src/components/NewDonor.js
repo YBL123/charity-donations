@@ -77,7 +77,6 @@ const NewDonor = (props) => {
 
 
     // //ERROR CHECK  
-    // const digits_only = string => [string].every(c => '0123456789'.includes(c))
 
     //CARD NUMBER
     if (isNaN(request.payment_method.card_number)) {
@@ -97,7 +96,6 @@ const NewDonor = (props) => {
       errorObj.security_number = 'invalid security number, length must be 3 digits'
     }
 
-    console.log('here',isNaN(request.donation_details.amount))
     //AMOUNT
     if (isNaN(request.donation_details.amount)) {
       isError = true
@@ -107,9 +105,20 @@ const NewDonor = (props) => {
       errorObj.amount = 'amount must be greater than 0'
     }
 
-      setErrorsState({ ...errors, ...errorObj })
+    setErrorsState({ ...errors, ...errorObj })
 
     return isError
+  }
+
+  const prefillPayment = () => {
+    const payment_method = {
+      name_on_card: 'John Smith',
+      card_type: 'master card',
+      card_number: '123451234512345',
+      security_number: '123',
+      expiration_date: '09/21'
+    }
+    setFormDataState({...formData, ...payment_method})
   }
 
   return (
@@ -120,6 +129,7 @@ const NewDonor = (props) => {
           errors={errors}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          prefillPayment={prefillPayment}
           buttonText="Proceed"
         />
       </div>

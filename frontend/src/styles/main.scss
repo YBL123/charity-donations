@@ -164,3 +164,19 @@ td {
   padding: 5px;
   width: 315px;
 }
+
+.prefill-button-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.prefill-button {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}

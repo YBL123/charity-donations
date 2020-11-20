@@ -27,6 +27,7 @@ Notes:
 * The database is a remote database hosted by mongoDB Atlas. The credentials in the dotenv file.
 * There is errorhandling on the back end and front end.
 * There is a customised middleware in the back end to handle asynchronious requests.
+* There is a 'Prefill Payment Details' button for ease of testing
 
 
 Built With: 
