@@ -32,6 +32,8 @@ const NewDonor = (props) => {
     method: ''
   })
 
+  console.log('errosState', errors)
+
   const handleChange = event => {
     setErrorsState({ ...errors, [event.target.name]: '' })
     setFormDataState({ ...formData, [event.target.name]: event.target.value })
@@ -71,27 +73,42 @@ const NewDonor = (props) => {
 
   const errorHandler = (request) => {
     let isError = false
+    let errorObj = {}
 
-    //ERROR CHECK  
-    const digits_only = string => [string].every(c => '0123456789'.includes(c))
 
-    console.log(digits_only(request.payment_method.security_number))
+    // //ERROR CHECK  
+    // const digits_only = string => [string].every(c => '0123456789'.includes(c))
 
     //CARD NUMBER
-    if (digits_only(request.payment_method.card_number)) {
+    if (isNaN(request.payment_method.card_number)) {
       isError = true
-      setErrorsState({ ...errors, card_number: 'invalid card number' })
-    } else if (request.payment_method.card_number.length <= 15 || request.payment_method.card_number.length > 16) {
+      errorObj.card_number = 'invalid card number'
+    } else if (request.payment_method.card_number.length < 15 || request.payment_method.card_number.length > 16) {
       isError = true
-      setErrorsState({ ...errors, card_number: 'invalid card number length' })
-    } else {
-      isError = false
+      errorObj.card_number = 'invalid card number length, length must be 15 or 16 digits'
     }
+
     //SECURITY NUMBER
-    if (!digits_only(request.payment_method.security_number)) {
+    if (isNaN(request.payment_method.security_number)) {
       isError = true
-      setErrorsState({ ...errors, security_number: 'invalid security number' })
+      errorObj.security_number = 'invalid security number'
+    } else if (request.payment_method.security_number.length !== 3) {
+      isError = true
+      errorObj.security_number = 'invalid security number, length must be 3 digits'
     }
+
+    console.log('here',isNaN(request.donation_details.amount))
+    //AMOUNT
+    if (isNaN(request.donation_details.amount)) {
+      isError = true
+      errorObj.amount = 'invalid amount, must contain a number'
+    } else if (request.donation_details.amount <= 0) {
+      isError = true
+      errorObj.amount = 'amount must be greater than 0'
+    }
+
+      setErrorsState({ ...errors, ...errorObj })
+
     return isError
   }
 

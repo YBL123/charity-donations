@@ -22,12 +22,10 @@ const NewPeriod = ({ donorsState, logOutDonor }) => {
 
   useEffect(() => {
     if (donorsState.donor_id !== undefined) {
-      setFormDataState({...formData, donor_id: donorsState.donor_id})
+      setFormDataState({ ...formData, donor_id: donorsState.donor_id })
       setViewConfigState({ ...viewConfigState, isLoading: false })
     }
   }, [donorsState.donor_id])
-
-  console.log(formData) ////////
 
   const handleChange = event => {
     setFormDataState({ ...formData, [event.target.name]: event.target.value })
@@ -43,17 +41,23 @@ const NewPeriod = ({ donorsState, logOutDonor }) => {
           method: formData.method
         }
       }
-      console.log('request', request) ////////////
-      const res = await newPeriod(request)
 
-      console.log('this is res in newPeriod', res) ////////////
+      if (isNaN(request.donation_details.amount)) {
+        setViewConfigState({ ...viewConfigState, isError: true, errMsg: 'invalid amount, must contain a number' })
+      } else if (request.donation_details.amount <= 0) {
+        setViewConfigState({ ...viewConfigState, isError: true, errMsg: 'amount must be greater than 0' })
+      } else {
+        const res = await newPeriod(request)
 
-      if (res.status === 201) {
-        console.log('new period created')
-        await webhookTrigger()
-        //RESETS FORM INPUT ONCE ANOTHER DONATION HAS BEEN MADE
-        setFormDataState({ ...formData, amount: '', method: '' })
+
+        if (res.status === 201) {
+          console.log('new period created')
+          await webhookTrigger()
+          //RESETS FORM INPUT ONCE ANOTHER DONATION HAS BEEN MADE
+          setFormDataState({ ...formData, amount: '', method: '' })
+        }
       }
+
     } catch (err) {
       console.log(err)
     }
@@ -74,6 +78,7 @@ const NewPeriod = ({ donorsState, logOutDonor }) => {
             buttonText="Proceed"
           />
         </div>
+        {viewConfigState.isError ? <p>{viewConfigState.errMsg}</p> : null }
         <p className="logout-link" onClick={logOutDonor}>Log out</p>
       </div>
     </div>
@@ -82,7 +87,7 @@ const NewPeriod = ({ donorsState, logOutDonor }) => {
 
   return (
     <div>
-      { viewConfigState.isLoading ? null : mainContent }
+      { viewConfigState.isLoading ? null : mainContent}
     </div>
   )
 }

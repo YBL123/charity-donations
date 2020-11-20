@@ -38,13 +38,14 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         <div className="control">
           <input
             className="input"
+            type="number"
             placeholder="i.e 50"
             name="amount"
             onChange={handleChange}
             value={formData.amount}
           />
         </div>
-        {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
+        {errors.amount !== '' ? <small className="help is-danger">{errors.amount}</small> : null }
       </div>
       <div className="field">
         <label className="label">Payment Method (equal or more-odd)</label>
