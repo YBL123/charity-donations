@@ -172,11 +172,11 @@ td {
 }
 
 .prefill-button {
-  border: 1px solid black;
-  color: white;
   background-color: black;
-  border-radius: 4px;
-  padding: 10px;
   outline: none;
   cursor: pointer;
+  padding: 15px;
+  color: white;
+  box-shadow: 0 8px 6px -6px black;   
+  border-radius: 30px;   
 }
