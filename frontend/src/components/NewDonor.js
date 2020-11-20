@@ -78,7 +78,14 @@ const NewDonor = (props) => {
       isError = true
       setErrorsState({ ...errors, card_number: 'invalid card number' })
     }
-    if ()
+    else if (request.payment_method.card_number.length < 15 || request.payment_method.card_number.length > 16) {
+      isError = true
+      setErrorsState({ ...errors, card_number: 'invalid card number length' })
+    }
+    // if (digits_only(request.payment_method.security_number)) {
+    //   isError = true
+    //   setErrorsState({ ...errors, security_number: 'invalid security number' })
+    // }
     return isError
   }
 
