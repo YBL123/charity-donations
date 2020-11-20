@@ -20,14 +20,6 @@ const PeriodForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
       <div className="field">
         <label className="label">Payment Method</label>
         <div className="control">
-          {/* <input
-            className="input"
-            placeholder="method"
-            name="method"
-            onChange={handleChange}
-            value={formData.method}
-          /> */}
-
           <select className="form-select" value={formData.method} onChange={handleChange} name="method">
             <option></option>
             <option value="equal">equal</option>

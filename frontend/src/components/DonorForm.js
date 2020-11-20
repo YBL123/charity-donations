@@ -45,20 +45,9 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
-
-
-
       <div className="field">
         <label className="label">Payment Method (equal or more-odd)</label>
         <div className="control">
-          {/* <input
-            className="input"
-            placeholder="equal or more-odd"
-            name="method"
-            onChange={handleChange}
-            value={formData.method}
-          /> */}
-
           <select className="form-select" value={formData.method} onChange={handleChange} name="method">
             <option></option>
             <option value="equal">equal</option>
@@ -67,11 +56,6 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
-
-
-
-
-
       <br />
       {/* <br/> */}
       <h3 className="donor-form-payment-section-h3">Payment Section:</h3>
@@ -91,14 +75,6 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
       <div className="field">
         <label className="label">Card Type</label>
         <div className="control">
-          {/* <input
-            className="input"
-            placeholder="visa debit/visa credit/master card/american express"
-            name="card_type"
-            onChange={handleChange}
-            value={formData.card_type}
-          /> */}
-
           <select className="form-select" value={formData.method} onChange={handleChange} name="card_type">
             <option></option>
             <option value="visa debit">visa debit</option>
