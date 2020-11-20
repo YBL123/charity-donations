@@ -74,18 +74,24 @@ const NewDonor = (props) => {
 
     //ERROR CHECK  
     const digits_only = string => [string].every(c => '0123456789'.includes(c))
+
+    console.log(digits_only(request.payment_method.security_number))
+
+    //CARD NUMBER
     if (digits_only(request.payment_method.card_number)) {
       isError = true
       setErrorsState({ ...errors, card_number: 'invalid card number' })
-    }
-    else if (request.payment_method.card_number.length < 15 || request.payment_method.card_number.length > 16) {
+    } else if (request.payment_method.card_number.length <= 15 || request.payment_method.card_number.length > 16) {
       isError = true
       setErrorsState({ ...errors, card_number: 'invalid card number length' })
+    } else {
+      isError = false
     }
-    // if (digits_only(request.payment_method.security_number)) {
-    //   isError = true
-    //   setErrorsState({ ...errors, security_number: 'invalid security number' })
-    // }
+    //SECURITY NUMBER
+    if (!digits_only(request.payment_method.security_number)) {
+      isError = true
+      setErrorsState({ ...errors, security_number: 'invalid security number' })
+    }
     return isError
   }
 

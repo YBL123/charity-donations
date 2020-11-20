@@ -111,7 +111,7 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
             value={formData.security_number}
           />
         </div>
-        {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
+        {errors.security_number !== '' ? <small className="help is-danger">{errors.security_number}</small> : null }
       </div>
       <div className="field">
         <label className="label">Expiration Date</label>
