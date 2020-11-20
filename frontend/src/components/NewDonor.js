@@ -59,7 +59,7 @@ const NewDonor = (props) => {
       const res = await newDonor(request)
       if (res.status === 201) {
         await webhookTrigger()
-        handleNewDonor({ donorId: res.data.newDonor._id, name: res.data.newDonor.name })
+        handleNewDonor({ donor_id: res.data.newDonor._id, name: res.data.newDonor.name })
       }
     } catch (error) {
       console.log(error)

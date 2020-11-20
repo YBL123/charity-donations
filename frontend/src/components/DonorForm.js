@@ -75,7 +75,7 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
       <div className="field">
         <label className="label">Card Type</label>
         <div className="control">
-          <select className="form-select" value={formData.method} onChange={handleChange} name="card_type">
+          <select className="form-select" value={formData.card_type} onChange={handleChange} name="card_type">
             <option></option>
             <option value="visa debit">visa debit</option>
             <option value="visa credit">visa credit</option>
