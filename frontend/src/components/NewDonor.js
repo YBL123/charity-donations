@@ -19,10 +19,22 @@ const NewDonor = (props) => {
     amount: '',
     method: ''
   })
+  
+  const [errors, setErrorsState] = useState({
+    name: '',
+    email: '',
+    name_on_card: '',
+    card_type: '',
+    card_number: '',
+    security_number: '',
+    expiration_date: '',
+    amount: '',
+    method: ''
+  })
 
   const handleChange = event => {
-    // const errors = { ...errors, [event.target.name]: ''} // shouldn't go here
-    setFormDataState({ ...formData, [event.target.name]: event.target.value }) //add errors back in later 
+    setErrorsState({ ...errors, [event.target.name]: ''}) 
+    setFormDataState({ ...formData, [event.target.name]: event.target.value })  
   }
 
   const handleSubmit = async event => {
@@ -60,7 +72,7 @@ const NewDonor = (props) => {
       <div className="container">
         <DonorForm
           formData={formData}
-          // errors={this.state.errors}
+          errors={errors}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           buttonText="Proceed"

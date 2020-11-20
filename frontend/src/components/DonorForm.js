@@ -1,10 +1,11 @@
 import React from 'react'
 
 
-const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
+const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText }) => (
+
   <div className="donor-form-wrap">
     <form onSubmit={handleSubmit} className="">
-      
+
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
@@ -16,7 +17,7 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
             value={formData.name}
           />
         </div>
-        {/* {errors.name && <small className="help is-danger">{errors.name}</small>} */}
+        {/* {errors.name && <small className="form-input-empty">{errors.name}</small>} */}
       </div>
       <div className="field">
         <label className="label">Email</label>
@@ -44,20 +45,33 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
+
+
+
       <div className="field">
         <label className="label">Payment Method (equal or more-odd)</label>
         <div className="control">
-          <input
+          {/* <input
             className="input"
             placeholder="equal or more-odd"
             name="method"
             onChange={handleChange}
             value={formData.method}
-          />
+          /> */}
+
+          <select className="form-select" value={formData.method} onChange={handleChange} name="method">
+            <option value="equal">equal</option>
+            <option value="more-odd">more-odd</option>
+          </select>
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
-      <br/>
+
+
+
+
+
+      <br />
       {/* <br/> */}
       <h3 className="donor-form-payment-section-h3">Payment Section:</h3>
       <div className="field">
@@ -76,13 +90,20 @@ const DonorForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
       <div className="field">
         <label className="label">Card Type</label>
         <div className="control">
-          <input
+          {/* <input
             className="input"
             placeholder="visa debit/visa credit/master card/american express"
             name="card_type"
             onChange={handleChange}
             value={formData.card_type}
-          />
+          /> */}
+
+          <select className="form-select" value={formData.method} onChange={handleChange} name="card_type">
+            <option value="visa debit">visa debit</option>
+            <option value="visa credit">visa credit</option>
+            <option value="master card">master card</option>
+            <option value="american express">american express</option>
+          </select>
         </div>
         {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
       </div>
