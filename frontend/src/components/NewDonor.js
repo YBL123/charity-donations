@@ -32,8 +32,6 @@ const NewDonor = (props) => {
     method: ''
   })
 
-  console.log('errosState', errors)
-
   const handleChange = event => {
     setErrorsState({ ...errors, [event.target.name]: '' })
     setFormDataState({ ...formData, [event.target.name]: event.target.value })
