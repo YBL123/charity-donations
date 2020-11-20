@@ -24,6 +24,7 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         <div className="control">
           <input
             className="input"
+            type="email"
             placeholder="johnsmith@gmail.com"
             name="email"
             onChange={handleChange}
@@ -90,13 +91,14 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
         <div className="control">
           <input
             className="input"
+            type="number"
             placeholder="long number on the front of your card"
             name="card_number"
             onChange={handleChange}
             value={formData.card_number}
           />
         </div>
-        {/* {errors.color && <small className="help is-danger">{errors.color}</small>} */}
+        {errors.card_number !== '' ? <small className="help is-danger">{errors.card_number}</small> : null }
       </div>
       <div className="field">
         <label className="label">Security Number</label>

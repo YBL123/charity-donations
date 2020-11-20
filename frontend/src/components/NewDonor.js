@@ -19,7 +19,7 @@ const NewDonor = (props) => {
     amount: '',
     method: ''
   })
-  
+
   const [errors, setErrorsState] = useState({
     name: '',
     email: '',
@@ -33,8 +33,8 @@ const NewDonor = (props) => {
   })
 
   const handleChange = event => {
-    setErrorsState({ ...errors, [event.target.name]: ''}) 
-    setFormDataState({ ...formData, [event.target.name]: event.target.value })  
+    setErrorsState({ ...errors, [event.target.name]: '' })
+    setFormDataState({ ...formData, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = async event => {
@@ -56,16 +56,31 @@ const NewDonor = (props) => {
           method: formData.method,
         }
       }
-      const res = await newDonor(request)
-      if (res.status === 201) {
-        await webhookTrigger()
-        handleNewDonor({ donor_id: res.data.newDonor._id, name: res.data.newDonor.name })
+      if (!errorHandler(request)) {
+        const res = await newDonor(request)
+        if (res.status === 201) {
+          await webhookTrigger()
+          handleNewDonor({ donor_id: res.data.newDonor._id, name: res.data.newDonor.name })
+        }
       }
+
     } catch (error) {
       console.log(error)
     }
   }
 
+  const errorHandler = (request) => {
+    let isError = false
+
+    //ERROR CHECK  
+    const digits_only = string => [string].every(c => '0123456789'.includes(c))
+    if (digits_only(request.payment_method.card_number)) {
+      isError = true
+      setErrorsState({ ...errors, card_number: 'invalid card number' })
+    }
+    if ()
+    return isError
+  }
 
   return (
     <section className="section">
