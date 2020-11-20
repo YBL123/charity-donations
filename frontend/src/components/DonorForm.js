@@ -60,6 +60,7 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
           /> */}
 
           <select className="form-select" value={formData.method} onChange={handleChange} name="method">
+            <option></option>
             <option value="equal">equal</option>
             <option value="more-odd">more-odd</option>
           </select>
@@ -99,6 +100,7 @@ const DonorForm = ({ formData, errors, handleChange, handleSubmit, buttonText })
           /> */}
 
           <select className="form-select" value={formData.method} onChange={handleChange} name="card_type">
+            <option></option>
             <option value="visa debit">visa debit</option>
             <option value="visa credit">visa credit</option>
             <option value="master card">master card</option>

@@ -29,6 +29,7 @@ const PeriodForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
           /> */}
 
           <select className="form-select" value={formData.method} onChange={handleChange} name="method">
+            <option></option>
             <option value="equal">equal</option>
             <option value="more-odd">more-odd</option>
           </select>
