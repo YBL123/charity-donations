@@ -18,15 +18,20 @@ const PeriodForm = ({ formData, handleChange, handleSubmit, buttonText }) => (
         {/* {errors.name && <small className="help is-danger">{errors.name}</small>} */}
       </div>
       <div className="field">
-        <label className="label">Method</label>
+        <label className="label">Payment Method</label>
         <div className="control">
-          <input
+          {/* <input
             className="input"
             placeholder="method"
             name="method"
             onChange={handleChange}
             value={formData.method}
-          />
+          /> */}
+
+          <select className="form-select" value={formData.method} onChange={handleChange} name="method">
+            <option value="equal">equal</option>
+            <option value="more-odd">more-odd</option>
+          </select>
         </div>
         {/* {errors.name && <small className="help is-danger">{errors.name}</small>} */}
       </div>
