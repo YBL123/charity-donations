@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const router = require('./config/routes')
 const errorHandler = require('./lib/errorHandler')
 const connectDB = require('./db/connect')
-// const cors = require('cors')
+const cors = require('cors')
 
 require('dotenv').config({ path: './config/config.env' })
 
@@ -13,7 +13,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-// app.use(cors())
+app.use(cors())
 
 app.use('/api', router)
 
